@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScrollingBackground : MonoBehaviour {
 
-    [SerializeField] GameObject camera;
+    [SerializeField] new GameObject camera;
     [SerializeField] Sprite background;
     [SerializeField] GameObject[] backgrounds;
     int currentBackground = 0;
