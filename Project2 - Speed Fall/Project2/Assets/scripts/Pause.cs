@@ -7,14 +7,15 @@ public class Pause : MonoBehaviour {
 
     [SerializeField] private static bool pausedGame = false;
     [SerializeField] private string MenuName;
+    [SerializeField] private string CurrentSceneName;
     [SerializeField] private CameraMove MoveCam;
     public GameObject PauseMenu;
     public GameObject ControlsMenu;
     public GameObject GameOverMenu;
-	
-	// Update is called once per frame
-	void Update () {
-        if (MoveCam.playerOffScreen)
+
+    // Update is called once per frame
+    void Update () {
+        if (MoveCam.playerOutOfRange())
         {
             GameOver();
         }
@@ -35,9 +36,7 @@ public class Pause : MonoBehaviour {
     public void ResumeGame()
     {
         pausedGame = false;
-        PauseMenu.SetActive(false);
-        ControlsMenu.SetActive(false);
-        GameOverMenu.SetActive(false);
+        resetActives();
         Time.timeScale = 1f;
     }
 
@@ -72,14 +71,24 @@ public class Pause : MonoBehaviour {
     {
         pausedGame = false;
         Time.timeScale = 1f;
+        resetActives();
         SceneManager.LoadScene(MenuName);
     }
 
     public void RestartGame()
     {
         pausedGame = false;
+        resetActives();
         Time.timeScale = 1f;
-        SceneManager.LoadScene("default_scene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+    }
+
+    public void resetActives()
+    {
+        PauseMenu.SetActive(false);
+        ControlsMenu.SetActive(false);
+        GameOverMenu.SetActive(false);
     }
 
     public void QuitGame()
