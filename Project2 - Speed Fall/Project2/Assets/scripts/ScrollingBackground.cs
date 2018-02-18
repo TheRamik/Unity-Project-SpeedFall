@@ -6,8 +6,8 @@ public class ScrollingBackground : MonoBehaviour {
 
     [SerializeField] new GameObject camera;
     [SerializeField] Sprite background;
-    [SerializeField] GameObject[] backgrounds;
-    int currentBackground = 0;
+    [SerializeField] public GameObject[] backgrounds;
+    public int currentBackground = 0;
     float startPos = 0;
 
 	// Use this for initialization
