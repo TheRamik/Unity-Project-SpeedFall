@@ -60,6 +60,6 @@ public class CameraMove : MonoBehaviour {
 
     public bool playerOutOfRange()
     {
-        return ((player.transform.position.y - 1f) > screenPoints[0].position.y) || (player.transform.position.y < screenPoints[1].position.y);
+        return ((player.transform.position.y - 1f) > screenPoints[0].position.y) || ((player.transform.position.y + 1f)  < screenPoints[1].position.y);
     }
 }

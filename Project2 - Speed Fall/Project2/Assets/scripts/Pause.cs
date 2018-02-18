@@ -13,6 +13,12 @@ public class Pause : MonoBehaviour {
     public GameObject ControlsMenu;
     public GameObject GameOverMenu;
 
+    private void Start()
+    {
+        Time.timeScale = 1f;
+    }
+
+
     // Update is called once per frame
     void Update () {
         if (MoveCam.playerOutOfRange())
@@ -77,11 +83,8 @@ public class Pause : MonoBehaviour {
 
     public void RestartGame()
     {
-        pausedGame = false;
-        resetActives();
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
+        ResumeGame();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void resetActives()
