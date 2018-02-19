@@ -8,6 +8,7 @@ public class ScrollingBackground : MonoBehaviour {
     [SerializeField] Sprite background;
     [SerializeField] GameObject[] backgrounds;
     [SerializeField] public PlatformSpawnManager platformSpawner;
+    [SerializeField] Vector3 vector;
     public int currentBackground = 0;
     float startPos = 0;
 

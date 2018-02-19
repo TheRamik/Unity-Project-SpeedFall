@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Pause : MonoBehaviour {
 
@@ -12,6 +13,7 @@ public class Pause : MonoBehaviour {
     public GameObject PauseMenu;
     public GameObject ControlsMenu;
     public GameObject GameOverMenu;
+    public Image Hearts;
 
     private void Start()
     {
@@ -21,6 +23,11 @@ public class Pause : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        if (Hearts.sprite.name == "Hearts_5")
+        {
+            GameOver();
+        }
+
         if (MoveCam.playerOutOfRange())
         {
             GameOver();

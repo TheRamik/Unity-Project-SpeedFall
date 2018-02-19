@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-    public bool isGrounded, isWall, facingRight;
+    public bool isGrounded, isWall;
+    public int Health;
     public GameObject starPrefab;
+    public Transform wallPoint;
+    public LayerMask wallLayerMask;
     public GameObject starSpawner;
     private Rigidbody2D rgbd;
     private Animator anim;
-    public Transform wallPoint;
-    public LayerMask wallLayerMask;
-    bool isMoving, isJumping, isWallSliding;
+
+    bool isMoving, isJumping, isWallSliding, facingRight;
 
     [SerializeField] private float jumpForce = 300f;
     [SerializeField] private float moveSpeed = 5f;
@@ -25,6 +27,7 @@ public class PlayerMovement : MonoBehaviour {
         rgbd = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         facingRight = true;
+        Health = 5;
     }
 
     private void FixedUpdate()
@@ -38,16 +41,14 @@ public class PlayerMovement : MonoBehaviour {
 
         HandleInput();
         HandleMovement(horizontal);
-        if (rgbd.velocity.y < -0.5f)
-        {
-            anim.SetBool("land", true);
-        }
+        HandleDamange();
         HandleWallSliding(horizontal);
         HandleLayers();
     }
 
     private void HandleInput()
     {
+
         if (Input.GetKey(KeyCode.Space) && !isWallSliding)
         {
             isJumping = true;
@@ -60,16 +61,22 @@ public class PlayerMovement : MonoBehaviour {
             isMoving = !isMoving;
         }
         if (Input.GetKey(KeyCode.D))
-        {
+        { 
             gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
             facingRight = true;
             isMoving = !isMoving;
         }
         if (Input.GetKey(KeyCode.K))
         {
-            ShootingStar(0);
+            if (isGrounded)
+            {
+                ShootingStar(0);
+            }
+            else
+            {
+                ShootingStar(1);
+            }
         }
-
     }
 
     private void HandleJump()
@@ -96,6 +103,10 @@ public class PlayerMovement : MonoBehaviour {
 
     private void HandleWallSliding(float horizontal)
     {
+        if (rgbd.velocity.y < -0.5f)
+        {
+            anim.SetBool("land", true);
+        }
         if (!isGrounded)
         {
             isWall = Physics2D.OverlapCircle(wallPoint.position, 0.1f, wallLayerMask);
@@ -116,6 +127,14 @@ public class PlayerMovement : MonoBehaviour {
 
         rgbd.velocity = new Vector2(horizontal * moveSpeed, rgbd.velocity.y);
         anim.SetFloat("speed", Mathf.Abs(horizontal));
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("Enemy"))
+        {
+            Damage(1);
+        }
     }
 
     private bool IsGrounded()
@@ -153,11 +172,11 @@ public class PlayerMovement : MonoBehaviour {
             {
                 if (facingRight)
                 {
-                    rgbd.AddForce(new Vector2(-jumpForce + 200f, jumpForce));
+                    rgbd.AddForce(new Vector2(-jumpForce * 3, jumpForce));
                 }
                 else
                 {
-                    rgbd.AddForce(new Vector2(jumpForce + 200f, jumpForce));
+                    rgbd.AddForce(new Vector2(jumpForce * 3, jumpForce));
                 }
             }
         }
@@ -181,7 +200,18 @@ public class PlayerMovement : MonoBehaviour {
                 star.GetComponent<NinjaStar>().Initialize(Vector2.left);
             }
         }
+    }
 
+    private void Death()
+    {
 
     }
+
+    public void Damage(int dmg)
+    {
+        Health -= dmg;
+    }
+
+    public
+
 }
