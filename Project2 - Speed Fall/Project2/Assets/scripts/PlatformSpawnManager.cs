@@ -4,74 +4,71 @@ using UnityEngine;
 
 public class PlatformSpawnManager : MonoBehaviour {
 
-    public static PlatformSpawnManager instance;
-    //public List<GameObject> NPCRefs = new List<GameObject>();
-    [SerializeField] ScrollingBackground sb;
+    [SerializeField] CameraMove cam;
     [SerializeField] Vector2 spawnPosition;
     [SerializeField] float distanceBetweenSpawns;
+    [SerializeField] float stopSpawnBeforePause;
     [SerializeField] Platform[] platforms;
     [SerializeField] private Transform[] wallPoints;
     List<PlatformList> livingPlatforms = new List<PlatformList>();
-
+    float LeftPoint, MiddlePoint, RightPoint;
+    Vector2 LeftSpawnPosition, RightSpawnPosition;
 
     private void Awake()
     {
-        instance = this;
+        LeftPoint = wallPoints[0].position.x;
+        RightPoint = wallPoints[1].position.x;
+        MiddlePoint = (LeftPoint + RightPoint) / 2;
+        LeftSpawnPosition = spawnPosition;
+        RightSpawnPosition = spawnPosition;
     }
 
-    // Use this for initialization
-    void Start ()
+    public void SpawnAll()
     {
-        SpawnAll();
-	}
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (sb.currentBackground == 1)
-        {
-            SpawnAll(sb.backgrounds[0].transform.);
-        }
-        else if (sb.currentBackground == 0)
-        {
-            SpawnAll(sb.backgrounds[1].transform.position);
-        }
+        SpawnObjects(LeftPoint, ref LeftSpawnPosition);
+        SpawnObjects(RightPoint, ref RightSpawnPosition);
     }
 
-    void SpawnAll(Vector3 backgroundPos)
+    void SpawnObjects(float point, ref Vector2 spawnPos)
     {
         for (int i = 0; i < platforms.Length; i++)
         {
-            IncrementSpawnPoint(backgroundPos);
-            livingPlatforms.Add(new PlatformList(Instantiate (platforms[i].prefab, spawnPosition, Quaternion.identity) as GameObject, platforms[i].PlatformNumber));
-            //NPCRefs.Add(livingNPCs[i].obj);
+            IncrementSpawnPoint(point);
+            if (spawnPos.y > cam.pauseFallingCamera[0] + stopSpawnBeforePause)
+            {
+
+                livingPlatforms.Add(new PlatformList(Instantiate(platforms[Random.Range(0, platforms.Length - 1)].prefab,
+                                    spawnPos, Quaternion.identity) as GameObject));
+            }
         }
     }
 
-
-
-    void IncrementSpawnPoint(Vector3 backgroundPos)
+    void IncrementSpawnPoint(float wallPoint)
     {
-        spawnPosition = new Vector2(Random.Range(wallPoints[0].position.x, wallPoints[1].position.x),
-                                    Random.Range(backgroundPos.y +, distanceBetweenSpawns));
-        //spawnPosition.x = Random.Range(wallPoints[0].position.x, wallPoints[1].position.x);
+        if (wallPoint < 0)
+        {
+            LeftSpawnPosition += new Vector2(0, Random.Range(-2, -distanceBetweenSpawns));
+            LeftSpawnPosition.x = Random.Range(wallPoint, MiddlePoint);
+        }
+        else
+        {
+            RightSpawnPosition += new Vector2(0, Random.Range(-2, -distanceBetweenSpawns));
+            RightSpawnPosition.x = Random.Range(MiddlePoint, wallPoint);
+        }
     }
 }
 
 [System.Serializable]
 public class Platform {
     public GameObject prefab;
-    public int PlatformNumber;
 }
 
 public class PlatformList
 {
     public GameObject obj;
-    public int PlatformNumber;
 
-    public PlatformList(GameObject newObj, int newPlatformNumber/*, EventType newNPCEvent*/)
+    public PlatformList(GameObject newObj)
     {
         obj = newObj;
-        PlatformNumber = newPlatformNumber;
     }
 }

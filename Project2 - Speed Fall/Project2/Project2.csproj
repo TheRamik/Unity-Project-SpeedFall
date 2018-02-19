@@ -220,6 +220,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\KillPlayer.cs" />
+    <Compile Include="Assets\NinjaStar.cs" />
     <Compile Include="Assets\scripts\CameraMove.cs" />
     <Compile Include="Assets\scripts\JumpHelper.cs" />
     <Compile Include="Assets\scripts\MoveToNextScene.cs" />

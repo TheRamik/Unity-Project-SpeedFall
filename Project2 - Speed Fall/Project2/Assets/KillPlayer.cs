@@ -11,7 +11,6 @@ public class KillPlayer : MonoBehaviour {
         if (collision.transform.CompareTag("Molio"))
         {
             pause.GameOver();
-            Debug.Log("Inside Collision");
         }
     }
 }

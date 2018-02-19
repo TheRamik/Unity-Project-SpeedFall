@@ -8,7 +8,7 @@ public class CameraMove : MonoBehaviour {
     public bool playerOffScreen;
     [SerializeField] GameObject player;
     [SerializeField] float startFallingCamera;
-    [SerializeField] float stopFallingCamera;
+    [SerializeField] public float[] pauseFallingCamera;
     [SerializeField] private Transform[] screenPoints;
     private new GameObject camera;
     private bool movCamera;
@@ -35,18 +35,28 @@ public class CameraMove : MonoBehaviour {
     void FixedUpdate()
     {
 
-        if (player.transform.position.y < startFallingCamera) {
+        if (player.transform.position.y < startFallingCamera)
+        {
             movCamera = true;
         }
 
-        if (movCamera && playerOutOfRange()) {
+        if (movCamera && playerOutOfRange())
+        {
             movCamera = false;
             playerOffScreen = true; //implement game over. If player goes off screen.
         }
 
-        if (movCamera) {
+        if (gameObject.transform.position.y < pauseFallingCamera[0])
+        {
+            movCamera = false;
+        }
+
+        if (movCamera)
+        {
             MoveCamera();
         }
+
+
     }
 
     void MoveCamera() {

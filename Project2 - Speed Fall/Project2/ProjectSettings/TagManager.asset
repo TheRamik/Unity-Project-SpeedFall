@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Molio
   - Killer
+  - platform
   layers:
   - Default
   - TransparentFX

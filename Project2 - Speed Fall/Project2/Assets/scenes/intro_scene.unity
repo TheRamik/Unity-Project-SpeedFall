@@ -198,7 +198,7 @@ Transform:
   - {fileID: 1655525777}
   - {fileID: 2142929906}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &61764124
 GameObject:
@@ -384,14 +384,17 @@ Prefab:
       propertyPath: m_TagString
       value: Molio
       objectReference: {fileID: 0}
+    - target: {fileID: 4714401109832074, guid: e6394bffbeb163847821aeca5e79a0c9, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 6.099
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714401109832074, guid: e6394bffbeb163847821aeca5e79a0c9, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.591
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e6394bffbeb163847821aeca5e79a0c9, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &201429759 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1247552994094520, guid: e6394bffbeb163847821aeca5e79a0c9,
-    type: 2}
-  m_PrefabInternal: {fileID: 184545590}
 --- !u!1 &335881407
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,7 +476,7 @@ Transform:
   - {fileID: 1367223481}
   - {fileID: 542964263}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &335881412
 MonoBehaviour:
@@ -488,9 +491,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   playerOffScreen: 0
-  player: {fileID: 201429759}
+  player: {fileID: 0}
   startFallingCamera: -40
-  stopFallingCamera: -40
+  pauseFallingCamera: []
   screenPoints:
   - {fileID: 1367223481}
   - {fileID: 542964263}
@@ -1308,7 +1311,7 @@ Transform:
   m_LocalScale: {x: 3.5, y: 3.5, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1586470581
 GameObject:
@@ -1516,7 +1519,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1911458413
 GameObject:
@@ -1671,7 +1674,7 @@ Prefab:
     - target: {fileID: 224611609787391890, guid: 572c24e7e8c367844895713dfe3273f6,
         type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224611609787391890, guid: 572c24e7e8c367844895713dfe3273f6,
         type: 2}
