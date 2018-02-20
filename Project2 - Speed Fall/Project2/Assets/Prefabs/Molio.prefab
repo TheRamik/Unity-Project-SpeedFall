@@ -20,22 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4724172034034268}
   m_Layer: 0
-  m_Name: NinjaStarSpawnerManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1171072799257776
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4317485390384074}
-  m_Layer: 0
-  m_Name: GroundPoint
+  m_Name: NinjaStarSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,6 +69,7 @@ GameObject:
   - component: {fileID: 61298098292968598}
   - component: {fileID: 114282865262889828}
   - component: {fileID: 114487100908483676}
+  - component: {fileID: 95645925292356116}
   m_Layer: 0
   m_Name: Molio
   m_TagString: Molio
@@ -91,19 +77,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4317485390384074
-Transform:
-  m_ObjectHideFlags: 1
+--- !u!1 &1941695672693710
+GameObject:
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1171072799257776}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.006, y: -0.319, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4714401109832074}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4540063702557814}
+  m_Layer: 0
+  m_Name: WallPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4533295554961166
 Transform:
   m_ObjectHideFlags: 1
@@ -111,11 +99,24 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1578875802035444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.078, y: -0.319, z: 0}
+  m_LocalPosition: {x: 0.013, y: -0.317, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4714401109832074}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4540063702557814
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1941695672693710}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.123, y: -0.108, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4714401109832074}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4714401109832074
 Transform:
@@ -129,8 +130,8 @@ Transform:
   m_Children:
   - {fileID: 4533295554961166}
   - {fileID: 4821183830174760}
-  - {fileID: 4317485390384074}
   - {fileID: 4724172034034268}
+  - {fileID: 4540063702557814}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -145,7 +146,7 @@ Transform:
   m_LocalScale: {x: 0.57142854, y: 0.57142854, z: 0.57142854}
   m_Children: []
   m_Father: {fileID: 4714401109832074}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4821183830174760
 Transform:
@@ -154,7 +155,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1445927422399094}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.054, y: -0.321, z: 0}
+  m_LocalPosition: {x: -0.006, y: -0.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4714401109832074}
@@ -205,6 +206,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.21, y: 0.57}
   m_EdgeRadius: 0
+--- !u!95 &95645925292356116
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1820919710051164}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 98ceeeb14d6026c49a113222b7aeded8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114282865262889828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -216,20 +234,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e217edcc2c3ed36468e6e401d6cb19b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrounded: 0
+  isGrounded: 1
+  isWall: 1
+  Health: 5
   starPrefab: {fileID: 1577653579636562, guid: 174f44cfdb866d84e89b069ced9efc4d, type: 2}
+  wallPoint: {fileID: 4540063702557814}
+  wallLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
   starSpawner: {fileID: 1110103210232716}
   jumpForce: 300
   moveSpeed: 5
-  anim: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 4294967295
-  groundRadius: 0.3
+  groundRadius: 0.2
   groundPoints:
   - {fileID: 4533295554961166}
   - {fileID: 4821183830174760}
-  - {fileID: 4317485390384074}
 --- !u!114 &114487100908483676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -276,8 +298,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: be766b4b09feabe4fa2f661a4b58e65a, type: 3}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: e717525b0696a8349a368e8b33854c73, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

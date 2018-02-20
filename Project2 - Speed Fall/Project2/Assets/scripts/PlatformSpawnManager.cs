@@ -34,10 +34,10 @@ public class PlatformSpawnManager : MonoBehaviour {
         for (int i = 0; i < platforms.Length; i++)
         {
             IncrementSpawnPoint(point);
-            if (spawnPos.y > cam.pauseFallingCamera[0] + stopSpawnBeforePause)
+            if (spawnPos.y > cam.pauseFallingCamera + stopSpawnBeforePause)
             {
 
-                livingPlatforms.Add(new PlatformList(Instantiate(platforms[Random.Range(0, platforms.Length - 1)].prefab,
+                livingPlatforms.Add(new PlatformList(Instantiate(platforms[Random.Range(0, platforms.Length)].prefab,
                                     spawnPos, Quaternion.identity) as GameObject));
             }
         }

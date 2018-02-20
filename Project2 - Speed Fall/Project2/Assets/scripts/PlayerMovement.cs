@@ -41,7 +41,6 @@ public class PlayerMovement : MonoBehaviour {
 
         HandleInput();
         HandleMovement(horizontal);
-        HandleDamange();
         HandleWallSliding(horizontal);
         HandleLayers();
     }
@@ -54,13 +53,13 @@ public class PlayerMovement : MonoBehaviour {
             isJumping = true;
             HandleJump();
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             gameObject.transform.rotation = new Quaternion(0, 180, 0, 0);
             facingRight = false;
             isMoving = !isMoving;
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         { 
             gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
             facingRight = true;
@@ -211,7 +210,5 @@ public class PlayerMovement : MonoBehaviour {
     {
         Health -= dmg;
     }
-
-    public
 
 }
