@@ -5,7 +5,6 @@ using UnityEngine;
 public class Wasp : MonoBehaviour {
 
     private int Health;
-    private Rigidbody2D rgbd;
     private Animator anim;
     private float moveSpeed = 3f;
     int direction = 1;
@@ -18,7 +17,6 @@ public class Wasp : MonoBehaviour {
 
     private void Awake()
     {
-        rgbd = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         Health = 25;
         startPos = gameObject.transform.position;
@@ -38,36 +36,47 @@ public class Wasp : MonoBehaviour {
     {
         if (!isWaiting)
         {
-
             currentPos += Time.deltaTime * direction * moveSpeed; // or however you are incrementing the position
             if (currentPos >= maxValue)
             {
                 direction *= -1;
                 gameObject.transform.rotation = new Quaternion(0, 180, 0, 0);
-                StartCoroutine(waitTime());
+                StartCoroutine(waitTime(1));
                 currentPos = maxValue;
             }
             else if (currentPos <= minValue)
             {
                 direction *= -1;
                 gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
-                StartCoroutine(waitTime());
+                StartCoroutine(waitTime(1));
                 currentPos = minValue;
             }
             transform.position = new Vector3(currentPos, startPos.y, 0);
         }
     }
 
-    IEnumerator waitTime()
-    {
-        isWaiting = true;
-        yield return new WaitForSeconds(1);
-        isWaiting = false;
-    }
-
     public void Damage(int dmg)
     {
         Health -= dmg;
+    }
+
+    private void Death()
+    {
+        anim.SetBool("isDead", true);
+        StartCoroutine(DeactivateWasp(0.8f));
+    }
+
+    IEnumerator waitTime(float seconds)
+    {
+        isWaiting = true;
+        yield return new WaitForSeconds(seconds);
+        isWaiting = false;
+    }
+
+    private IEnumerator DeactivateWasp(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        gameObject.SetActive(false);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -77,13 +86,4 @@ public class Wasp : MonoBehaviour {
             Damage(1);
         }
     }
-
-    private void Death()
-    {
-        anim.SetBool("isDead", true);
-        Destroy(gameObject, 0.5f);
-    }
-
-
-
 }

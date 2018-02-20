@@ -6,11 +6,13 @@ public class NPCInteraction : MonoBehaviour {
 
     [SerializeField] GameObject interact;
     [SerializeField] GameObject dialogue;
+    bool hasInteracted = false;
 
 	
 	void Update () {
-		if (interact.activeSelf && Input.GetKeyDown(KeyCode.F))
+		if (interact.activeSelf && Input.GetKeyDown(KeyCode.F) && !hasInteracted)
         {
+            hasInteracted = true;
             dialogue.SetActive(true);
             interact.SetActive(false);
         }
@@ -18,7 +20,7 @@ public class NPCInteraction : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Molio"))
+        if (collision.CompareTag("Molio") && !hasInteracted)
         {
             interact.SetActive(true);
         }

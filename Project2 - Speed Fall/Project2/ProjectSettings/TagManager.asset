@@ -5,10 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Molio
-  - Killer
   - platform
   - Enemy
   - NinjaStar
+  - spikes
   layers:
   - Default
   - TransparentFX

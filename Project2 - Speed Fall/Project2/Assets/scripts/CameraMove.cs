@@ -8,11 +8,12 @@ public class CameraMove : MonoBehaviour {
     public bool playerOffScreen;
     public float startFallingCamera;
     public float pauseFallingCamera;
+    public CameraShake cameraShake;
     [SerializeField] GameObject player;
     [SerializeField] Transform[] screenPoints;
     private new GameObject camera;
     private bool movCamera;
-    
+    GameObject[] enemyArray;
 
     public GameObject Camera
     {
@@ -30,6 +31,29 @@ public class CameraMove : MonoBehaviour {
     private void Awake()
     {
         Camera = this.gameObject;
+        enemyArray = GameObject.FindGameObjectsWithTag("Enemy");
+    }
+
+    
+    private void Update()
+    {
+        if (!movCamera)
+        {
+            if (enemyArray.Length > 0)
+            {
+                GameObject enemy = enemyArray[0];
+                if (!(enemy.activeSelf))
+                {
+                    gameObject.GetComponent<CameraShake>().enabled = true;
+                    cameraShake.shakecamera();
+                    
+                    //for (int j = 0; j < platformArray.Length; j++)
+                    //{
+                    //    Destroy(platformArray[j], 1f);
+                    //}
+                }
+            }
+        }
     }
 
     void FixedUpdate()

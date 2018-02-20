@@ -130,7 +130,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.CompareTag("Enemy"))
+        if (collision.transform.CompareTag("Enemy") || collision.transform.CompareTag("spikes"))
         {
             Damage(1);
         }

@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 81099350185258858}
   - component: {fileID: 114799216942464910}
   - component: {fileID: 114318363337839784}
+  - component: {fileID: 114752448752622604}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -111,7 +112,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -164,6 +165,22 @@ MonoBehaviour:
   - {fileID: 21300004, guid: 5db87471820c29b43a713440cc2e29e5, type: 3}
   HeartUI: {fileID: 0}
   player: {fileID: 0}
+--- !u!114 &114752448752622604
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1516646428246482}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a78ce9635279544f82f3fcb5d1f0254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camTransform: {fileID: 4521214373097380}
+  shakeDuration: 10
+  shakeAmount: 0.7
+  decreaseFactor: 1
+  shaketrue: 0
 --- !u!114 &114799216942464910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -178,7 +195,8 @@ MonoBehaviour:
   speed: -0.5
   playerOffScreen: 0
   startFallingCamera: -2
-  pauseFallingCamera: 0
+  pauseFallingCamera: -70
+  cameraShake: {fileID: 114752448752622604}
   player: {fileID: 0}
   screenPoints:
   - {fileID: 4824629623382192}
