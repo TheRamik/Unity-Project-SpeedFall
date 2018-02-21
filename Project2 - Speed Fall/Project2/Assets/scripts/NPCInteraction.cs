@@ -20,9 +20,16 @@ public class NPCInteraction : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Molio") && !hasInteracted)
+        if (collision.CompareTag("Molio"))
         {
-            interact.SetActive(true);
+            if (!hasInteracted)
+            {
+                interact.SetActive(true);
+            }
+            else
+            {
+                dialogue.SetActive(true);
+            }
         }
     }
 
@@ -31,6 +38,10 @@ public class NPCInteraction : MonoBehaviour {
         if (collision.CompareTag("Molio"))
         {
             interact.SetActive(false);
+            if (hasInteracted)
+            {
+                EndInteraction();
+            }
         }
     }
 

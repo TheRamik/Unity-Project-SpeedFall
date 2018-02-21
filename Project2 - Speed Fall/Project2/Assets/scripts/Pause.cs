@@ -28,11 +28,6 @@ public class Pause : MonoBehaviour {
             GameOver();
         }
 
-        if (MoveCam.playerOutOfRange())
-        {
-            GameOver();
-        }
-
 		if(Input.GetKeyDown(KeyCode.Escape))
         {
             if (pausedGame)

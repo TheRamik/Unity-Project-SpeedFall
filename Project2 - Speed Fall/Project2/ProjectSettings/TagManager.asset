@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - NinjaStar
   - spikes
+  - GameBorder
   layers:
   - Default
   - TransparentFX

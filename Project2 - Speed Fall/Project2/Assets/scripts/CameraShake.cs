@@ -79,7 +79,7 @@ public class CameraShake : MonoBehaviour {
         string temp = platName.Substring(platName.Length - 7);
         if (!(temp == "(clone)"))
         {
-            yield return new WaitForSeconds(duration * 20f);
+            yield return new WaitForSeconds(duration * 10f);
         }
         yield return new WaitForSeconds(duration);
         platform.SetActive(false);

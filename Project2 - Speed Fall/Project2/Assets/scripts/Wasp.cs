@@ -37,19 +37,19 @@ public class Wasp : MonoBehaviour {
         if (!isWaiting)
         {
             currentPos += Time.deltaTime * direction * moveSpeed; // or however you are incrementing the position
-            if (currentPos >= maxValue)
+            if (currentPos >= (startPos.x + maxValue))
             {
                 direction *= -1;
                 gameObject.transform.rotation = new Quaternion(0, 180, 0, 0);
                 StartCoroutine(waitTime(1));
-                currentPos = maxValue;
+                currentPos = startPos.x + maxValue;
             }
-            else if (currentPos <= minValue)
+            else if (currentPos <= (startPos.x + minValue))
             {
                 direction *= -1;
                 gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
                 StartCoroutine(waitTime(1));
-                currentPos = minValue;
+                currentPos = startPos.x + minValue;
             }
             transform.position = new Vector3(currentPos, startPos.y, 0);
         }

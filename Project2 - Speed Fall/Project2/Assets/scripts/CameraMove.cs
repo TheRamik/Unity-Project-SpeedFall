@@ -11,6 +11,7 @@ public class CameraMove : MonoBehaviour {
     public CameraShake cameraShake;
     [SerializeField] GameObject player;
     [SerializeField] Transform[] screenPoints;
+    [SerializeField] Pause pause;
     private new GameObject camera;
     private bool movCamera;
     GameObject[] enemyArray;
@@ -46,11 +47,6 @@ public class CameraMove : MonoBehaviour {
                 {
                     gameObject.GetComponent<CameraShake>().enabled = true;
                     cameraShake.shakecamera();
-                    
-                    //for (int j = 0; j < platformArray.Length; j++)
-                    //{
-                    //    Destroy(platformArray[j], 1f);
-                    //}
                 }
             }
         }
@@ -66,7 +62,8 @@ public class CameraMove : MonoBehaviour {
         if (movCamera && playerOutOfRange())
         {
             movCamera = false;
-            playerOffScreen = true; //implement game over. If player goes off screen.
+            //playerOffScreen = true; //implement game over. If player goes off screen.
+            pause.GameOver();
         }
 
         if (gameObject.transform.position.y < pauseFallingCamera)

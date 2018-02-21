@@ -27,7 +27,6 @@ public class PlayerMovement : MonoBehaviour {
         rgbd = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         facingRight = true;
-        Health = 5;
     }
 
     private void FixedUpdate()
