@@ -9,7 +9,6 @@ public class Pause : MonoBehaviour {
     [SerializeField] private static bool pausedGame = false;
     [SerializeField] private string MenuName;
     [SerializeField] private string CurrentSceneName;
-    [SerializeField] private CameraMove MoveCam;
     public GameObject PauseMenu;
     public GameObject ControlsMenu;
     public GameObject GameOverMenu;
@@ -17,7 +16,18 @@ public class Pause : MonoBehaviour {
 
     private void Start()
     {
-        Time.timeScale = 1f;
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+        if (sceneName == "intro_scene")
+        {
+            pausedGame = false;
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+        
     }
 
 
@@ -45,6 +55,15 @@ public class Pause : MonoBehaviour {
     {
         pausedGame = false;
         resetActives();
+        Time.timeScale = 1f;
+    }
+
+    public void StartGame()
+    {
+        pausedGame = false;
+        GameOverMenu.SetActive(false);    //replace GameOverMenuUI with StartUI
+        PauseMenu.SetActive(false);
+        ControlsMenu.SetActive(false);
         Time.timeScale = 1f;
     }
 

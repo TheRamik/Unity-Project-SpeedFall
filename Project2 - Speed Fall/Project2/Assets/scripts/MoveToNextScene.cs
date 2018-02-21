@@ -10,7 +10,6 @@ public class MoveToNextScene : MonoBehaviour {
     {
         if (collision.CompareTag("Molio"))
         {
-            Debug.Log("Collision Made");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
